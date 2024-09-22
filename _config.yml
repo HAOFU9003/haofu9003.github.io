@@ -4,12 +4,12 @@ email: haofu@utexas.edu
 description: >-
   test for a website which used for show my pictures
 
-social:
-  twitter: joaomlneto
-  facebook: joaomlneto
-  instagram: joaomlneto
-  github: joaomlneto
-  linkedin:
+#social:
+ # twitter: joaomlneto
+  #facebook: joaomlneto
+  #instagram: joaomlneto
+  #github: joaomlneto
+  #linkedin:
 
 # Build settings
 markdown: kramdown
