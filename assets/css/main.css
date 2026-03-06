@@ -1550,10 +1550,12 @@ input, select, textarea {
 						text-transform: uppercase;
 					}
 
-						#header nav > ul > li a.icon:before {
-							color: #505051;
-							float: right;
+						#header nav > ul > li a .nav-icon {
+							fill: #505051;
+							width: 0.95em;
+							height: 0.95em;
 							margin-left: 0.75em;
+							vertical-align: -0.12em;
 						}
 
 						#header nav > ul > li a:hover {
