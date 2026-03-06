@@ -3,8 +3,30 @@
         <h1><a href="{{ 'photography/' | relative_url }}"><strong>{{ site.photography.title | default: site.title | escape }}</strong></a></h1>
         <nav>
           <ul>
-            <li><a href="{{ '/' | relative_url }}" class="icon solid fa-home">Home</a></li>
-            <li><a href="#footer" class="icon solid fa-info-circle">About</a></li>
+            <li>
+              <a href="{{ '/' | relative_url }}">
+                <span>Home</span>
+                <svg class="nav-icon" viewBox="0 0 576 512" aria-hidden="true" focusable="false">
+                  <path d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112-.29a16 16 0 0 0 16-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.71a16 16 0 0 0 16 16L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31a12 12 0 0 0 16.9 1.6L280.37 107a12.19 12.19 0 0 1 15.3 0l235.23 194a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"></path>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="{{ 'photography/topics/' | relative_url }}">
+                <span>Themes</span>
+                <svg class="nav-icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+                  <path d="M80 368H16a16 16 0 0 0-16 16v96a16 16 0 0 0 16 16h64a16 16 0 0 0 16-16v-96a16 16 0 0 0-16-16zm0-176H16a16 16 0 0 0-16 16v96a16 16 0 0 0 16 16h64a16 16 0 0 0 16-16v-96a16 16 0 0 0-16-16zm0-176H16A16 16 0 0 0 0 32v96a16 16 0 0 0 16 16h64a16 16 0 0 0 16-16V32a16 16 0 0 0-16-16zm416 352H144a16 16 0 0 0-16 16v96a16 16 0 0 0 16 16h352a16 16 0 0 0 16-16v-96a16 16 0 0 0-16-16zm0-176H144a16 16 0 0 0-16 16v96a16 16 0 0 0 16 16h352a16 16 0 0 0 16-16v-96a16 16 0 0 0-16-16zm0-176H144a16 16 0 0 0-16 16v96a16 16 0 0 0 16 16h352a16 16 0 0 0 16-16V32a16 16 0 0 0-16-16z"></path>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="#footer">
+                <span>About</span>
+                <svg class="nav-icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+                  <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 110a54 54 0 1 1-54 54 54 54 0 0 1 54-54zm72 282a12 12 0 0 1-12 12h-40a12 12 0 0 1-12-12V284h-32a12 12 0 0 1-12-12v-40a12 12 0 0 1 12-12h84a12 12 0 0 1 12 12z"></path>
+                </svg>
+              </a>
+            </li>
           </ul>
         </nav>
       </header>

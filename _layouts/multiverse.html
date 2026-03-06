@@ -3,25 +3,60 @@
 
   {%- include head.html -%}
 
-  <body class="is-preload">
+  <body class="is-preload{% if page.disable_lightbox %} no-lightbox{% endif %}">
 
     <div id="wrapper">
 
       {%- include header.html -%}
 
       <div id="main">
-        {% for image in site.images %}
-        <article class="thumb">
-          <a href="{{site.baseurl}}/assets/images/fulls/{{ image.path | split: '/' | last | split: '.' | first }}.jpg" class="image">
-            <img src="{{site.baseurl}}/assets/images/thumbs/{{ image.path | split: '/' | last | split: '.' | first }}.jpg" alt="{{ image.title }}" />
-          </a>
-          <h2>{{ image.title }}</h2>
-          <p>{{ image.caption }}</p>
-        </article>
-        {% endfor %}
+        {% if page.photography_view == 'topics' %}
+          {% for topic in page.topics %}
+          <article class="thumb">
+            <a href="{{ topic.url | relative_url }}" class="image">
+              <img src="{{ topic.cover | default: 'assets/css/images/head.jpg' | relative_url }}" alt="{{ topic.title }}" />
+            </a>
+            <h2>{{ topic.title }}</h2>
+            <p>{{ topic.description }}</p>
+          </article>
+          {% endfor %}
+        {% else %}
+          {% assign current_theme = page.theme_slug | default: 'main' %}
+          {% assign generated = site.data.photography_generated.photos | default: empty %}
+          {% assign gallery_items = generated | where: "theme", current_theme %}
 
-        <!-- no idea where to put this... -->
-        <!-- {{ content }} -->
+          {% if current_theme == 'main' and gallery_items.size == 0 %}
+            {% for image in site.images %}
+            <article class="thumb">
+              <a href="{{site.baseurl}}/assets/images/fulls/{{ image.path | split: '/' | last | split: '.' | first }}.jpg" class="image">
+                <img src="{{site.baseurl}}/assets/images/thumbs/{{ image.path | split: '/' | last | split: '.' | first }}.jpg" alt="{{ image.title }}" />
+              </a>
+              <h2>{{ image.title }}</h2>
+              <p>{{ image.caption }}</p>
+            </article>
+            {% endfor %}
+          {% else %}
+          {% for item in gallery_items %}
+          <article class="thumb">
+            <a href="{{ item.full_url | relative_url }}" class="image">
+              <img src="{{ item.thumb_url | relative_url }}" alt="{{ item.title }}" />
+            </a>
+            <h2>{{ item.title }}</h2>
+            <p>{{ item.caption }}</p>
+          </article>
+          {% endfor %}
+
+          {% if gallery_items.size == 0 %}
+          <article class="thumb">
+            <a href="{{ 'assets/css/images/head.jpg' | relative_url }}" class="image">
+              <img src="{{ 'assets/css/images/head.jpg' | relative_url }}" alt="{{ page.title | default: 'Gallery' }}" />
+            </a>
+            <h2>{{ page.title | default: "Gallery" }}</h2>
+            <p>No photos yet. Put image + sidecar md files into <code>photography/library/{{ current_theme }}/</code> and run the thumbnail script.</p>
+          </article>
+          {% endif %}
+          {% endif %}
+        {% endif %}
       </div>
 
       {%- include footer.html -%}
