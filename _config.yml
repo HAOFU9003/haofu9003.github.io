@@ -1,13 +1,84 @@
-title: How Photograph
-author: Hao
-email: haofu9003@gmail.com
-description: |
-  Welcome to How Photograph! <br>
-  My name is Hao, it sounds like 'how'. And I'm constantly exploring how to improve my photography skills.<br>
-  That's why I named my photo website 'How Photograph'.<br>
-  If you have any questions or comments, please contact me via the email. <br>
-  Commercial use is prohibited without permission.
+title: Hao Fu's Homepage
+author: Hao Fu
+email: haofu@utexas.edu
+description: "Personal academic homepage of Hao Fu."
 
+# =============================================
+# Academic Homepage Configuration
+# Fill in your information below
+# =============================================
+academic:
+  name: "Hao Fu"
+  position: "Ph.D. Student"
+  affiliation: "University of Texas at Austin"
+  avatar: "assets/css/images/head.jpg"
+  avatar_style: "rounded"  # Options: "circle", "rounded", "square". Use "rounded" for half-body shot.
+  bio: |
+    I am a Ph.D. student in Mechanical Engineering at The University of Texas at Austin, where I am fortunate to be advised by Professor <a href="https://www.cs.utexas.edu/~pstone/">Peter Stone</a>. My research is at the intersection of robotics and reinforcement learning, with a specific focus on the <strong>locomotion of humanoid robots</strong>. 
+    Prior to joining UT Austin, I earned my M.S. in Electronic and Information Engineering from Tsinghua University and my B.S. in Mechanical Engineering from Xi'an Jiaotong University. 
+    Beyond research, I am a passionate <a href="https://haofu9003.github.io/">photographer</a> and an avid soccer player, I also play guitar, basketball and computer games in my spare time.
+  email: "haofu@utexas.edu"
+  google_scholar: ""       # Full URL to your Google Scholar profile
+  github: "haofu9003"               # GitHub username
+  linkedin: ""             # LinkedIn username
+  twitter: ""              # Twitter/X username
+  cv: ""                   # Path to your CV PDF, e.g. "assets/files/cv.pdf"
+  address: "Austin TX"              # e.g., "Room XXX, Building, University, City"
+  enable_dark_mode: true   # Enable dark mode support
+
+  research_interests:
+    - "Robot Learning"
+    - "Reinforcement Learning"
+    - "Humanoid Robots"
+
+  news:
+    - date: "2026-02"
+      text:  I will be joining <a href="https://www.sonycsl.co.jp/en/">Sony CSL</a> as a Research Intern in summer 2026!
+    - date: "2025-XX"
+      text: "Paper accepted at ..."
+
+  # education:
+  #   - degree: "Ph.D. in Mechanical Engineering"
+  #     school: "University of Texas at Austin"
+  #     period: "2024 – Present"
+  #     description: ""
+  #   - degree: "M.S. in Electrical Engineering"
+  #     school: "Tsinghua University"
+  #     period: "2021 – 2024"
+  #     description: ""
+  #   - degree: "B.S. in Electrical Engineering"
+  #     school: "Xi'an Jiaotong University"
+  #     period: "2017 – 2021"
+  #     description: ""
+
+  # experience:
+  #   - title: "Research Assistant"
+  #     organization: "Lab / University"
+  #     period: "20XX – Present"
+  #     description: ""
+  #   # Add more items as needed
+
+  publications:
+    - title: "Your Paper Title Here"
+      authors: "Author1, <strong>Hao</strong>, Author2"
+      venue: "Conference / Journal Name"
+      year: 2025
+      pdf: ""
+      code: ""
+      arxiv: ""
+      project: ""
+      image: ""   # Optional: thumbnail image path
+    # Add more publications as needed
+
+# Photography sub-site
+photography:
+  title: How Photograph
+  description: |
+    Welcome to How Photograph! <br>
+    My name is Hao, it sounds like 'how'. And I'm constantly exploring how to improve my photography skills.<br>
+    That's why I named my photo website 'How Photograph'.<br>
+    If you have any questions or comments, please contact me via the email. <br>
+    Commercial use is prohibited without permission.
 
 #social:
 #twitter: joaomlneto

@@ -2,8 +2,8 @@
   <div class="inner split">
     <div>
       <section>
-        <h2>{{ site.title }}</h2>
-        <p>{{ site.description }}</p>
+        <h2>{{ site.photography.title | default: site.title }}</h2>
+        <p>{{ site.photography.description | default: site.description }}</p>
       </section>
       {%- include social.html -%}
       <p class="copyright">
