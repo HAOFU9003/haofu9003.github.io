@@ -183,6 +183,11 @@
       document.querySelector('.nav-links').classList.toggle('show');
     });
 
+    // Trigger hero entrance motion after DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.classList.add('is-loaded');
+    });
+
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {

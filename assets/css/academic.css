@@ -240,6 +240,45 @@ img {
   transition: border-color 0.3s;
 }
 
+.hero-photo img,
+.hero-text h1,
+.hero-title,
+.hero-affiliation,
+.hero-bio,
+.hero-interests,
+.hero-links {
+  opacity: 0;
+  transform: translateY(14px) scale(0.985);
+  filter: blur(6px);
+  transition: opacity 2.0s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 2.0s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 2.0s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.is-loaded .hero-photo img,
+body.is-loaded .hero-text h1,
+body.is-loaded .hero-title,
+body.is-loaded .hero-affiliation,
+body.is-loaded .hero-bio,
+body.is-loaded .hero-interests,
+body.is-loaded .hero-links {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+body.is-loaded .hero-photo img {
+  transition-delay: 0.05s;
+  animation: hero-float 12s ease-in-out infinite;
+}
+
+body.is-loaded .hero-text h1 { transition-delay: 0.12s; }
+body.is-loaded .hero-title { transition-delay: 0.18s; }
+body.is-loaded .hero-affiliation { transition-delay: 0.24s; }
+body.is-loaded .hero-bio { transition-delay: 0.3s; }
+body.is-loaded .hero-interests { transition-delay: 0.36s; }
+body.is-loaded .hero-links { transition-delay: 0.42s; }
+
 .hero-text h1 {
   font-size: 2rem;
   font-weight: 700;
@@ -283,12 +322,42 @@ img {
   background: var(--card-bg);
   color: var(--text-secondary);
   font-size: 1.1rem;
-  transition: all 0.2s;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
 .hero-links a:hover {
   background: var(--accent);
   color: #fff;
+  transform: translateY(-2px);
+}
+
+@keyframes hero-float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo img,
+  .hero-text h1,
+  .hero-title,
+  .hero-affiliation,
+  .hero-bio,
+  .hero-interests,
+  .hero-links {
+    transition: none;
+    transform: none;
+    filter: none;
+    opacity: 1;
+  }
+
+  body.is-loaded .hero-photo img {
+    animation: none;
+  }
+
+  .hero-links a {
+    transition: none;
+  }
 }
 
 /* --- Research Interests --- */
@@ -635,5 +704,21 @@ img {
 
   .container {
     padding: 0 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo img,
+  .hero-text h1,
+  .hero-title,
+  .hero-affiliation,
+  .hero-bio,
+  .hero-interests,
+  .hero-links {
+    transition: none;
+  }
+
+  body.is-loaded .hero-photo img {
+    animation: none;
   }
 }
