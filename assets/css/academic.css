@@ -414,6 +414,57 @@ img {
   background: var(--accent-bg-hover);
 }
 
+/* --- Competitions --- */
+.competition-list {
+  display: grid;
+  gap: 18px;
+}
+
+.competition-card {
+  display: flex;
+  gap: 20px;
+  padding: 20px 22px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  border-radius: 10px;
+}
+
+.competition-image {
+  flex-shrink: 0;
+  width: 180px;
+}
+
+.competition-image img {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--border-medium);
+  object-fit: cover;
+}
+
+.competition-info {
+  flex: 1;
+}
+
+.competition-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.competition-role {
+  font-size: 0.92rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.competition-desc {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
 /* --- Timeline (Education & Experience) --- */
 .two-col {
   display: grid;
@@ -538,6 +589,15 @@ img {
   }
 
   .pub-image {
+    width: 100%;
+    max-width: 240px;
+  }
+
+  .competition-card {
+    flex-direction: column;
+  }
+
+  .competition-image {
     width: 100%;
     max-width: 240px;
   }

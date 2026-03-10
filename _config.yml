@@ -34,8 +34,8 @@ academic:
   news:
     - date: "2026-02"
       text:  I will be joining <a href="https://www.sonycsl.co.jp/en/">Sony CSL</a> as a Research Intern in summer 2026!
-    - date: "2025-XX"
-      text: "Paper accepted at ..."
+    - date: "2024-08"
+      text: 'Arrived in Austin to begin my PhD life!'
 
   # education:
   #   - degree: "Ph.D. in Mechanical Engineering"
@@ -59,16 +59,37 @@ academic:
   #   # Add more items as needed
 
   publications:
-    - title: "Your Paper Title Here"
-      authors: "Author1, <strong>Hao</strong>, Author2"
-      venue: "Conference / Journal Name"
-      year: 2025
+    - title: "STAMP: Scalable Humanoid Task Adaptation via Steering Diffusion Motion Prior"
+      authors: "<strong>Hao Fu</strong> et al."
+      venue: "Robotics: Science and Systems (RSS), under review"
+      year: 2026
       pdf: ""
       code: ""
       arxiv: ""
       project: ""
-      image: ""   # Optional: thumbnail image path
-    # Add more publications as needed
+      image: ""
+
+    - title: "Learning Agile Striker Skills for Humanoid Soccer Robots from Noisy Sensory Input"
+      authors: "Zifan Xu, Myoungkyu Seo, Dongmyeong Lee, <strong>Hao Fu</strong>, Jiaheng Hu, Jiaxun Cui, Yuqian Jiang, Zhihan Wang, Anastasiia Brund, Joydeep Biswas, Peter Stone"
+      venue: "IEEE International Conference on Robotics and Automation (ICRA)"
+      year: 2026
+      pdf: "https://arxiv.org/pdf/2512.06571"
+      code: ""
+      arxiv: "https://arxiv.org/abs/2512.06571"
+      project: ""
+      image: ""
+
+  competitions:
+    - title: "RoboCup"
+      role: "Humanoid Soccer"
+      description: "Participated in RoboCup-related humanoid soccer research and competition activities."
+      image: ""
+    - title: "Formula Student"
+      role: "Student Racing Team"
+      description: "Participated in Formula Student projects involving vehicle design, engineering, and team collaboration."
+      image: ""
+      
+
 
 # Photography sub-site
 photography:
