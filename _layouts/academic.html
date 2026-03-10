@@ -33,6 +33,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#news">News</a></li>
         <li><a href="#publications">Publications</a></li>
+        <li><a href="#competitions">Competitions</a></li>
         <li><a href="{{ 'photography/' | relative_url }}">Photography</a></li>
       </ul>
       <button class="nav-toggle" aria-label="Toggle navigation">
@@ -137,6 +138,35 @@
       {% endif %}
     </div>
   </section>
+
+  <!-- Competitions -->
+  {% if site.academic.competitions %}
+  <section id="competitions" class="section">
+    <div class="container">
+      <h2 class="section-title">Competitions</h2>
+      <div class="competition-list">
+        {% for comp in site.academic.competitions %}
+        <div class="competition-card">
+          {% if comp.image %}
+          <div class="competition-image">
+            <img src="{{ comp.image | relative_url }}" alt="{{ comp.title }}" />
+          </div>
+          {% endif %}
+          <div class="competition-info">
+            <h3 class="competition-title">{{ comp.title }}</h3>
+            {% if comp.role %}
+            <p class="competition-role">{{ comp.role }}</p>
+            {% endif %}
+            {% if comp.description %}
+            <p class="competition-desc">{{ comp.description }}</p>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
 
 
 
