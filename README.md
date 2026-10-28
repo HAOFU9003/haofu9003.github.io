@@ -1,17 +1,19 @@
-![Multiverse by HTML5UP](https://repository-images.githubusercontent.com/192228387/23ca0280-91f4-11e9-86e0-afcf90e961ad)
+# haofu9003.github.io
 
-# Jekyll Multiverse Template
+Personal homepage of Hao Fu, built with Jekyll and served by GitHub Pages.
 
-[![Build Status](https://travis-ci.com/joaomlneto/jekyll-multiverse-template.svg?branch=master)](https://travis-ci.com/joaomlneto/jekyll-multiverse-template)
+- `/` — academic homepage. Content (bio, news, publications, competitions) lives in `_config.yml` under `academic:`; layout in `_layouts/academic.html`.
+- `/photography/` — photo gallery. Photo list and captions live in `_data/photos.yml`; layout in `_layouts/photography.html`.
 
-This is a Jekyll site template based on the [Multiverse](https://html5up.net/multiverse) template by [HTML5 UP](https://html5up.net)
+## Adding a photo
 
-Each of the images displayed in the website is its own separate *post*:
-- Metadata (image title and caption) goes in the [`_images`](_images) folder
-- Actual images (thumbnails and fulls go into [`assets/images`](assets/images)).
+1. Copy the original JPG to `photography/originals/<id>.jpg` (this folder is git-ignored).
+2. Add an entry with the same `id` to `_data/photos.yml`.
+3. Run `python3 scripts/build_photos.py` to generate `assets/photos/full/<id>.jpg` (3200px) and `assets/photos/thumb/<id>.jpg` (960px), then commit them.
 
-Demo: https://joaomlneto.github.io/jekyll-multiverse-template/
+## Local preview
 
-## Showcase
-
-- [My grandfather's paintings](https://rodrigues.neto.pt)
+```sh
+bundle install
+bundle exec jekyll serve
+```

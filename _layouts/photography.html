@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+{%- include site-head.html extra_css='assets/css/photography.css' -%}
+<body>
+
+  {%- include site-nav.html -%}
+
+  <header class="gallery-intro">
+    <div class="container">
+      <h1 class="section-title">{{ site.photography.title | default: page.title }}</h1>
+      <p class="gallery-desc">{{ site.photography.description }}</p>
+    </div>
+  </header>
+
+  <main class="gallery" id="gallery">
+    {%- for photo in site.data.photos %}
+    {%- capture meta -%}
+      {{ photo.place }}{% if photo.place and photo.date %} · {% endif %}{% if photo.date %}{{ photo.date | date: "%b %-d, %Y" }}{% endif %}
+    {%- endcapture %}
+    <a class="tile" id="photo-{{ photo.id }}" href="{{ 'assets/photos/full/' | append: photo.id | append: '.jpg' | relative_url }}">
+      <img src="{{ 'assets/photos/thumb/' | append: photo.id | append: '.jpg' | relative_url }}" alt="{{ photo.title | escape }}" loading="lazy" decoding="async" />
+      <span class="tile-info">
+        <span class="tile-title">{{ photo.title }}</span>
+        {%- if meta != '' %}<span class="tile-meta">{{ meta }}</span>{% endif %}
+      </span>
+      {%- if photo.caption %}<span class="tile-caption" hidden>{{ photo.caption }}</span>{% endif %}
+    </a>
+    {%- endfor %}
+  </main>
+
+  <dialog class="lightbox" aria-label="Photo viewer">
+    <figure class="lightbox-figure">
+      <img class="lightbox-img" alt="" />
+      <figcaption class="lightbox-text">
+        <h2 class="lightbox-title"></h2>
+        <p class="lightbox-meta"></p>
+        <p class="lightbox-caption"></p>
+      </figcaption>
+    </figure>
+    <span class="lightbox-counter"></span>
+    <button class="lightbox-btn lightbox-close" aria-label="Close"><i class="fas fa-times"></i></button>
+    <button class="lightbox-btn lightbox-prev" aria-label="Previous photo"><i class="fas fa-chevron-left"></i></button>
+    <button class="lightbox-btn lightbox-next" aria-label="Next photo"><i class="fas fa-chevron-right"></i></button>
+  </dialog>
+
+  {%- include site-footer.html -%}
+  <script src="{{ 'assets/js/photography.js' | relative_url }}"></script>
+
+</body>
+</html>

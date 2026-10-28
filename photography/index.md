@@ -1,5 +1,4 @@
 ---
-layout: multiverse
+layout: photography
 title: How Photograph
-theme_slug: main
 ---

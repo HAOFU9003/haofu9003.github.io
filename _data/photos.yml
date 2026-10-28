@@ -1,0 +1,127 @@
+# Photography gallery, shown in this order on /photography/.
+#
+# To add a photo:
+#   1. Put the original JPG in photography/originals/<id>.jpg (git-ignored).
+#   2. Add an entry below with the same id.
+#   3. Run: python3 scripts/build_photos.py
+#
+# Fields: id (file name without .jpg), title, caption (optional, HTML allowed),
+#         place, date (YYYY-MM-DD).
+
+- id: "01"
+  title: My photo
+  caption: Click <em>About</em> in the top menu to learn more about me!
+
+- id: "02"
+  title: Tengwang Pavilion
+  caption: 落霞与孤鹜齐飞，秋水共长天一色
+  place: Nanchang, China
+  date: 2023-03-07
+
+- id: "03"
+  title: Xiamen Mountains-to-Sea Trail
+  place: Xiamen, China
+  date: 2023-03-17
+
+- id: "04"
+  title: Gulangyu
+  caption: Island in Xiamen
+  place: Xiamen, China
+  date: 2023-03-18
+
+- id: "05"
+  title: Baicheng Sandy Beach
+  place: Xiamen, China
+  date: 2023-03-15
+
+- id: "06"
+  title: Amoy YatSen Road
+  place: Xiamen, China
+  date: 2023-03-16
+
+- id: "08"
+  title: Qinhuangdao
+  place: Qinhuangdao, China
+  date: 2024-02-02
+
+- id: "09"
+  title: Pagsum Co
+  caption: 巴松措 — literally meaning “three rocks” in Tibetan. Shot on iPhone.
+  place: Tibet, China
+  date: 2024-06-07
+
+- id: "10"
+  title: Xinduqiao
+  place: Kangding, China
+  date: 2022-08-04
+
+- id: "11"
+  title: Wuyuan
+  place: Shangrao, China
+  date: 2023-03-06
+
+- id: "12"
+  title: Live-Carefree Night
+  caption: This is the beginning of my photography dream. Our school has a performance stage, and I became its photographer. Every weekend night, I go there to take photos and enjoy the carefree night!
+  place: Beijing, China
+  date: 2022-08-27
+
+- id: "13"
+  title: Xiamen Mountains-to-Sea Trail
+  place: Xiamen, China
+  date: 2023-03-17
+
+- id: "14"
+  title: Port of Dalian
+  place: Dalian, China
+  date: 2023-04-21
+
+- id: "15"
+  title: Xinghai Square
+  place: Dalian, China
+  date: 2023-04-21
+
+- id: "16"
+  title: Lianhua Mountain
+  place: Dalian, China
+  date: 2023-04-21
+
+- id: "17"
+  title: Roppongi
+  place: Tokyo, Japan
+  date: 2023-08-02
+
+- id: "18"
+  title: Japan Fireworks Festival
+  place: Osaka, Japan
+  date: 2023-08-05
+
+- id: "19"
+  title: Kiyomizu-dera
+  place: Kyoto, Japan
+  date: 2023-08-06
+
+- id: "20"
+  title: Qinghai Lake
+  place: Qinghai, China
+  date: 2024-06-02
+
+- id: "21"
+  title: Qinghai–Tibet Railway
+  place: Tibet, China
+  date: 2024-06-03
+
+- id: "22"
+  title: Potala Palace
+  place: Lhasa, China
+  date: 2024-06-05
+
+- id: "23"
+  title: Yamzho Yumco
+  place: Shannan, China
+  date: 2024-06-07
+
+- id: "24"
+  title: Danba
+  place: Garzê Tibetan Autonomous Prefecture, China
+  date: 2022-08-09

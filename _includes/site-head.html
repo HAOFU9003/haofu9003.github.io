@@ -1,0 +1,25 @@
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {%- seo -%}
+  {%- feed_meta -%}
+  <link rel="stylesheet" href="{{ 'assets/css/academic.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ 'assets/css/fontawesome-all.min.css' | relative_url }}" />
+  {%- if include.extra_css %}
+  <link rel="stylesheet" href="{{ include.extra_css | relative_url }}" />
+  {%- endif %}
+  <script>
+    // Apply theme immediately to prevent flash
+    (function() {
+      var saved = localStorage.getItem('theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  {%- if jekyll.environment == 'production' and site.google_analytics -%}
+    {%- include google-analytics.html -%}
+  {%- endif -%}
+</head>

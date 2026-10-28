@@ -1,0 +1,24 @@
+{%- comment -%} On the homepage, section links scroll in place; elsewhere they point back to the homepage. {%- endcomment -%}
+{%- if page.layout == 'academic' -%}
+  {%- assign home = '' -%}
+{%- else -%}
+  {%- assign home = '/' | relative_url -%}
+{%- endif -%}
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="{{ home }}#about" class="nav-brand">{{ site.academic.name | default: "Your Name" }}</a>
+    <ul class="nav-links">
+      <li><a href="{{ home }}#about">About</a></li>
+      <li><a href="{{ home }}#news">News</a></li>
+      <li><a href="{{ home }}#publications">Publications</a></li>
+      <li><a href="{{ home }}#competitions">Competitions</a></li>
+      <li><a href="{{ 'photography/' | relative_url }}"{% if page.layout == 'photography' %} class="active"{% endif %}>Photography</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+      <i class="fas fa-moon"></i>
+    </button>
+  </div>
+</nav>
