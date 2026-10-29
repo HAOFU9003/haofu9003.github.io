@@ -160,7 +160,6 @@
 
 - id: "taipei"
   title: Taipei
-  place: Taipei, Taiwan  # TODO: fill in place / caption
   date: 2025-05-08
 
 - id: "guilin-mountain"
