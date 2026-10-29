@@ -1,4 +1,4 @@
 ---
 layout: photography
-title: How Photograph
+title: Photography
 ---

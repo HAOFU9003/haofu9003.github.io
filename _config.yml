@@ -1,7 +1,8 @@
-title: Hao Fu's Homepage
+title: Hao Fu
 author: Hao Fu
 email: haofu@utexas.edu
-description: "Personal academic homepage of Hao Fu."
+tagline: "Ph.D. Student at UT Austin"   # homepage tab title: "<title> | <tagline>"
+description: "Hao Fu (付豪), Ph.D. student at UT Austin advised by Peter Stone, working on humanoid robots and reinforcement learning."   # shown in search results / link previews
 
 # =============================================
 # Academic Homepage Configuration
