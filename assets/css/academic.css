@@ -231,7 +231,7 @@ img {
   flex-shrink: 0;
 }
 
-.hero-photo img {
+.hero-photo .avatar {
   width: 300px;
   height: auto;
   border-radius: 12px;
@@ -240,7 +240,7 @@ img {
   transition: border-color 0.3s;
 }
 
-.hero-photo img,
+.hero-photo .avatar,
 .hero-text h1,
 .hero-title,
 .hero-affiliation,
@@ -255,7 +255,7 @@ img {
               filter 2.0s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-body.is-loaded .hero-photo img,
+body.is-loaded .hero-photo .avatar,
 body.is-loaded .hero-text h1,
 body.is-loaded .hero-title,
 body.is-loaded .hero-affiliation,
@@ -267,7 +267,7 @@ body.is-loaded .hero-links {
   filter: blur(0);
 }
 
-body.is-loaded .hero-photo img {
+body.is-loaded .hero-photo .avatar {
   transition-delay: 0.05s;
   animation: hero-float 12s ease-in-out infinite;
 }
@@ -285,6 +285,79 @@ body.is-loaded .hero-links { transition-delay: 0.42s; }
   color: var(--text-primary);
   margin-bottom: 4px;
   letter-spacing: -0.03em;
+}
+
+/* --- Lab / group badges under the photo --- */
+.groups {
+  width: 300px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  opacity: 0;
+  transition: opacity 1.6s ease 0.5s;
+}
+
+body.is-loaded .groups {
+  opacity: 1;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.group-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px; /* rounded square, like the photo above */
+  overflow: hidden;
+  background: #fff; /* logos are drawn on white, in both themes */
+  border: 1px solid var(--border-dark);
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 0.8rem;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.group-badge img {
+  width: 100%;
+  height: 100%;
+  padding: 4px; /* keep edge-to-edge logos off the border */
+  object-fit: contain;
+}
+
+.group-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: color 0.25s;
+}
+
+.group:hover .group-badge {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: 0 6px 16px var(--shadow-nav);
+}
+
+.group:hover .group-label {
+  color: var(--accent);
+}
+
+.name-zh {
+  margin-left: 0.3em;
+  font-family: 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
+  font-weight: 600;
+  font-size: 0.82em;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
 }
 
 .hero-title {
@@ -338,7 +411,7 @@ body.is-loaded .hero-links { transition-delay: 0.42s; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-photo img,
+  .hero-photo .avatar,
   .hero-text h1,
   .hero-title,
   .hero-affiliation,
@@ -351,7 +424,7 @@ body.is-loaded .hero-links { transition-delay: 0.42s; }
     opacity: 1;
   }
 
-  body.is-loaded .hero-photo img {
+  body.is-loaded .hero-photo .avatar {
     animation: none;
   }
 
@@ -424,13 +497,26 @@ body.is-loaded .hero-links { transition-delay: 0.42s; }
 
 .pub-image {
   flex-shrink: 0;
-  width: 160px;
+  width: 210px;
+}
+
+.pub-image a {
+  display: block;
 }
 
 .pub-image img {
+  display: block;
   width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
   border-radius: 6px;
   border: 1px solid var(--border-medium);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pub-image a:hover img {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px var(--shadow-nav);
 }
 
 .pub-info {
@@ -532,6 +618,10 @@ body.is-loaded .hero-links { transition-delay: 0.42s; }
   font-size: 0.92rem;
   color: var(--text-secondary);
   line-height: 1.75;
+}
+
+.competition-links {
+  margin-top: 10px;
 }
 
 /* --- Timeline (Education & Experience) --- */
@@ -639,9 +729,19 @@ body.is-loaded .hero-links { transition-delay: 0.42s; }
     gap: 24px;
   }
 
-  .hero-photo img {
+  .hero-photo .avatar {
     width: 140px;
     height: auto;
+  }
+
+  .hero-photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .groups {
+    width: min(300px, 100%);
   }
 
   .hero-links {
@@ -659,7 +759,7 @@ body.is-loaded .hero-links { transition-delay: 0.42s; }
 
   .pub-image {
     width: 100%;
-    max-width: 240px;
+    max-width: 360px;
   }
 
   .competition-card {
@@ -708,7 +808,7 @@ body.is-loaded .hero-links { transition-delay: 0.42s; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-photo img,
+  .hero-photo .avatar,
   .hero-text h1,
   .hero-title,
   .hero-affiliation,
@@ -718,7 +818,7 @@ body.is-loaded .hero-links { transition-delay: 0.42s; }
     transition: none;
   }
 
-  body.is-loaded .hero-photo img {
+  body.is-loaded .hero-photo .avatar {
     animation: none;
   }
 }

@@ -5,6 +5,11 @@
   {%- feed_meta -%}
   <link rel="stylesheet" href="{{ 'assets/css/academic.css' | relative_url }}" />
   <link rel="stylesheet" href="{{ 'assets/css/fontawesome-all.min.css' | relative_url }}" />
+  {%- if page.layout == 'academic' and site.academic.name_zh and site.academic.name_zh != "" %}
+  {%- comment -%} Serif font for the Chinese name, subset to just those characters. {%- endcomment %}
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600&text={{ site.academic.name_zh | url_encode }}&display=swap" />
+  {%- endif %}
   {%- if include.extra_css %}
   <link rel="stylesheet" href="{{ include.extra_css | relative_url }}" />
   {%- endif %}

@@ -10,10 +10,26 @@
     <div class="container">
       <div class="hero-grid">
         <div class="hero-photo">
-          <img src="{{ site.academic.avatar | default: 'assets/images/avatar.jpg' | relative_url }}" alt="{{ site.academic.name | default: 'Profile Photo' }}" />
+          <img class="avatar" src="{{ site.academic.avatar | default: 'assets/images/avatar.jpg' | relative_url }}" alt="{{ site.academic.name | default: 'Profile Photo' }}" />
+          {%- if site.academic.groups %}
+          <div class="groups">
+            {%- for group in site.academic.groups %}
+            <a class="group" href="{{ group.url }}" title="{{ group.name }}">
+              <span class="group-badge">
+                {%- if group.logo and group.logo != "" -%}
+                <img src="{{ group.logo | relative_url }}" alt="{{ group.name }}" />
+                {%- else -%}
+                {{ group.short | default: group.name | slice: 0, 4 }}
+                {%- endif -%}
+              </span>
+              <span class="group-label">{{ group.short | default: group.name }}</span>
+            </a>
+            {%- endfor %}
+          </div>
+          {%- endif %}
         </div>
         <div class="hero-text">
-          <h1>{{ site.academic.name | default: "Your Name" }}</h1>
+          <h1>{{ site.academic.name | default: "Your Name" }}{% if site.academic.name_zh and site.academic.name_zh != "" %} <span class="name-zh" lang="zh-CN">{{ site.academic.name_zh }}</span>{% endif %}</h1>
           <p class="hero-title">{{ site.academic.position | default: "Ph.D. Student / Researcher" }}</p>
           <p class="hero-affiliation">{{ site.academic.affiliation | default: "University Name" }}</p>
           <p class="hero-bio">{{ site.academic.bio | default: "A brief introduction about yourself. Your research interests and background." }}</p>
@@ -77,15 +93,18 @@
         <div class="pub-card">
           {% if pub.image and pub.image != "" %}
           <div class="pub-image">
-            <img src="{{ pub.image | relative_url }}" alt="{{ pub.title }}" />
+            {%- assign pub_link = pub.project | default: pub.pdf %}
+            {% if pub_link and pub_link != "" %}<a href="{{ pub_link | relative_url }}">{% endif %}
+            <img src="{{ pub.image | relative_url }}" alt="{{ pub.title }}" loading="lazy" />
+            {% if pub_link and pub_link != "" %}</a>{% endif %}
           </div>
           {% endif %}
           <div class="pub-info">
             <h3 class="pub-title">{{ pub.title }}</h3>
-            <p class="pub-authors">{{ pub.authors }}</p>
-            <p class="pub-venue">{{ pub.venue }}, {{ pub.year }}</p>
+            {% if pub.authors and pub.authors != "" %}<p class="pub-authors">{{ pub.authors }}</p>{% endif %}
+            <p class="pub-venue">{{ pub.venue }}{% if pub.year %}, {{ pub.year }}{% endif %}</p>
             <div class="pub-links">
-              {% if pub.pdf and pub.pdf != "" %}<a href="{{ pub.pdf }}" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>{% endif %}
+              {% if pub.pdf and pub.pdf != "" %}<a href="{{ pub.pdf | relative_url }}" class="pub-link"><i class="fas fa-file-pdf"></i> PDF</a>{% endif %}
               {% if pub.code and pub.code != "" %}<a href="{{ pub.code }}" class="pub-link"><i class="fas fa-code"></i> Code</a>{% endif %}
               {% if pub.project and pub.project != "" %}<a href="{{ pub.project }}" class="pub-link"><i class="fas fa-globe"></i> Project</a>{% endif %}
               {% if pub.arxiv and pub.arxiv != "" %}<a href="{{ pub.arxiv }}" class="pub-link"><i class="fas fa-archive"></i> arXiv</a>{% endif %}
@@ -119,6 +138,11 @@
             {% endif %}
             {% if comp.description and comp.description != "" %}
             <p class="competition-desc">{{ comp.description }}</p>
+            {% endif %}
+            {% if comp.website and comp.website != "" %}
+            <div class="pub-links competition-links">
+              <a href="{{ comp.website }}" class="pub-link"><i class="fas fa-globe"></i> Website</a>
+            </div>
             {% endif %}
           </div>
         </div>

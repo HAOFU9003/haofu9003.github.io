@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
 {%- include site-head.html extra_css='assets/css/photography.css' -%}
-<body>
+<body class="photography-page">
 
   {%- include site-nav.html -%}
 
-  <header class="gallery-intro">
-    <div class="container">
-      <h1 class="section-title">{{ site.photography.title | default: page.title }}</h1>
-      <p class="gallery-desc">{{ site.photography.description }}</p>
-    </div>
-  </header>
-
   <main class="gallery" id="gallery">
-    {%- for photo in site.data.photos %}
+    {%- comment -%} Newest first; photos without a date go last. {%- endcomment -%}
+    {%- assign photos = site.data.photos | sort: "date", "first" | reverse -%}
+    {%- for photo in photos %}
+    {%- if photo.hidden %}{% continue %}{% endif %}
     {%- capture meta -%}
-      {{ photo.place }}{% if photo.place and photo.date %} · {% endif %}{% if photo.date %}{{ photo.date | date: "%b %-d, %Y" }}{% endif %}
+      {%- assign has_place = false -%}{%- if photo.place and photo.place != "" -%}{%- assign has_place = true -%}{%- endif -%}
+      {%- if has_place -%}{{ photo.place }}{%- endif -%}{%- if has_place and photo.date %} · {% endif -%}{% if photo.date %}{{ photo.date | date: "%b %-d, %Y" }}{% endif %}
     {%- endcapture %}
-    <a class="tile" id="photo-{{ photo.id }}" href="{{ 'assets/photos/full/' | append: photo.id | append: '.jpg' | relative_url }}">
-      <img src="{{ 'assets/photos/thumb/' | append: photo.id | append: '.jpg' | relative_url }}" alt="{{ photo.title | escape }}" loading="lazy" decoding="async" />
+    {%- comment -%} Aspect ratio from _data/photo_sizes.yml (written by the build script). {%- endcomment -%}
+    {%- assign size = site.data.photo_sizes[photo.id] -%}
+    {%- if size -%}{%- assign ratio = size[0] | times: 1.0 | divided_by: size[1] | round: 4 -%}{%- else -%}{%- assign ratio = 1.5 -%}{%- endif %}
+    <a class="tile" id="photo-{{ photo.id }}" style="--r: {{ ratio }}" href="{{ 'assets/photos/full/' | append: photo.id | append: '.jpg' | relative_url }}">
+      <img src="{{ 'assets/photos/thumb/' | append: photo.id | append: '.jpg' | relative_url }}" alt="{{ photo.title | escape }}"{% if size %} width="{{ size[0] }}" height="{{ size[1] }}"{% endif %} loading="lazy" decoding="async" />
       <span class="tile-info">
         <span class="tile-title">{{ photo.title }}</span>
         {%- if meta != '' %}<span class="tile-meta">{{ meta }}</span>{% endif %}

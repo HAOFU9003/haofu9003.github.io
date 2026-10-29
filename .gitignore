@@ -49,3 +49,6 @@ Gemfile.lock
 
 # Full-size photo originals (web versions are generated into assets/photos/)
 photography/originals/
+
+# Python bytecode
+__pycache__/

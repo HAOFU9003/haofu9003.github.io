@@ -3,7 +3,34 @@
 (function() {
   const tiles = Array.from(document.querySelectorAll('.gallery .tile'));
   const box = document.querySelector('.lightbox');
-  if (!tiles.length || !box || typeof box.showModal !== 'function') return; // fall back to plain links
+  if (!tiles.length) return;
+
+  // Hide the nav while scrolling down; bring it back on any upward scroll.
+  const nav = document.querySelector('.nav');
+  let lastY = window.scrollY;
+  window.addEventListener('scroll', function() {
+    const y = window.scrollY;
+    const menuOpen = document.querySelector('.nav-links.show');
+    if (Math.abs(y - lastY) < 6) return;
+    nav.classList.toggle('nav-hidden', y > lastY && y > 80 && !menuOpen);
+    lastY = y;
+  }, { passive: true });
+
+  // Fade tiles up into place as they scroll into view, staggered within each batch.
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const gallery = document.querySelector('.gallery');
+    gallery.classList.add('reveal');
+    const observer = new IntersectionObserver(function(entries) {
+      entries.filter(function(e) { return e.isIntersecting; }).forEach(function(e, i) {
+        e.target.style.setProperty('--delay', Math.min(i * 0.07, 0.5) + 's');
+        e.target.classList.add('is-visible');
+        observer.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -5% 0px' });
+    tiles.forEach(function(t) { observer.observe(t); });
+  }
+
+  if (!box || typeof box.showModal !== 'function') return; // fall back to plain links
 
   const img = box.querySelector('.lightbox-img');
   const title = box.querySelector('.lightbox-title');

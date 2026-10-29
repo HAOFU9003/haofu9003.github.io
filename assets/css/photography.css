@@ -7,35 +7,45 @@
   color: var(--accent);
 }
 
-/* --- Intro --- */
-.gallery-intro {
-  padding: 110px 0 32px;
+/* Nav slides away while scrolling down the gallery, returns when scrolling up. */
+.photography-page .nav {
+  transition: transform 0.35s ease, box-shadow 0.3s, background 0.3s;
 }
 
-.gallery-desc {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  line-height: 1.8;
+.photography-page .nav.nav-hidden {
+  transform: translateY(-100%);
+  box-shadow: none;
 }
 
-/* --- Grid --- */
+/* --- Full-bleed rows of equal height. Each tile's width follows its photo's
+   aspect ratio (--r, set in the layout), so landscape and portrait shots
+   both show uncropped and every row fills the screen. --- */
 .gallery {
-  max-width: 1600px;
-  margin: 0 auto 56px;
-  padding: 0 8px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 8px;
+  --row: max(220px, 36vh); /* target row height; rows stretch a little to fill */
+  margin-top: 61px; /* below the fixed nav */
+  display: flex;
+  flex-wrap: wrap;
+  background: #0b0b0f;
+}
+
+/* Soaks up the spare space in the last row so its photos are not blown up. */
+.gallery::after {
+  content: "";
+  flex-grow: 1000000;
 }
 
 .tile {
   position: relative;
   display: block;
-  height: clamp(220px, 36vh, 380px);
+  flex: calc(var(--r) * 100) 1 calc(var(--r) * var(--row));
+  min-width: 0;
+  aspect-ratio: var(--r);
   overflow: hidden;
-  border-radius: 6px;
-  background: var(--card-bg);
+  background: #16161c;
   color: #fff;
+  z-index: 0;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .tile img {
@@ -43,7 +53,22 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Hovered tile floats above its neighbours. */
+.tile:hover,
+.tile:focus-visible {
+  color: #fff;
+  z-index: 2;
+  transform: translateY(-6px) scale(1.035);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  outline: none;
+}
+
+.tile:hover img,
+.tile:focus-visible img {
+  transform: scale(1.06);
 }
 
 .tile-info {
@@ -51,41 +76,73 @@
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 40px 16px 14px;
+  padding: 56px 20px 16px;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0));
   pointer-events: none;
 }
 
 .tile-title {
   font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.02em;
   line-height: 1.4;
+  transform: translateY(4px);
+  transition: transform 0.35s ease;
 }
 
 .tile-meta {
   font-size: 0.78rem;
-  opacity: 0.8;
+  opacity: 0;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
+  transition: max-height 0.35s ease, opacity 0.35s ease;
 }
 
-.tile:hover img,
-.tile:focus-visible img {
-  transform: scale(1.04);
+.tile:hover .tile-title,
+.tile:focus-visible .tile-title {
+  transform: translateY(0);
 }
 
 .tile:hover .tile-meta,
 .tile:focus-visible .tile-meta {
   max-height: 2.5em;
+  opacity: 0.85;
 }
 
-.tile:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 2px;
+/* Tiles drift up into place as they scroll into view (class added by photography.js). */
+.gallery.reveal .tile {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.gallery.reveal .tile.is-visible {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.9s ease var(--delay, 0s),
+              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0s),
+              box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gallery.reveal .tile.is-visible:hover,
+.gallery.reveal .tile.is-visible:focus-visible {
+  transform: translateY(-6px) scale(1.035);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.photography-page {
+  overflow-x: hidden; /* floating edge tiles must not cause sideways scroll */
+}
+
+.photography-page .footer {
+  margin-top: 0;
+}
+
+.footer .footer-note {
+  margin-top: 4px;
+  font-size: 0.72rem;
 }
 
 /* --- Lightbox --- */
@@ -206,19 +263,18 @@ html.lightbox-open {
 }
 
 /* --- Responsive --- */
+@media (max-width: 980px) {
+  .gallery { --row: max(180px, 28vh); }
+}
+
+@media (max-width: 480px) {
+  .gallery { --row: 30vh; }
+}
+
 @media (max-width: 768px) {
-  .gallery-intro {
-    padding-top: 90px;
-  }
-
-  .gallery {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 6px;
-    padding: 0 6px;
-  }
-
   .tile-meta {
     max-height: 2.5em;
+    opacity: 0.85;
   }
 
   .lightbox-figure {
@@ -243,9 +299,16 @@ html.lightbox-open {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .tile,
   .tile img,
+  .tile-title,
   .tile-meta {
     transition: none;
+  }
+
+  .gallery.reveal .tile {
+    opacity: 1;
+    transform: none;
   }
 
   .lightbox[open] .lightbox-figure {

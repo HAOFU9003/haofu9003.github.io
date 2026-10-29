@@ -9,13 +9,14 @@ description: "Personal academic homepage of Hao Fu."
 # =============================================
 academic:
   name: "Hao Fu"
+  name_zh: "付豪"          # shown next to the name on the homepage; "" to hide
   position: "Ph.D. Student"
   affiliation: "University of Texas at Austin"
   avatar: "assets/img/head.jpg"
   avatar_style: "rounded"  # Options: "circle", "rounded", "square". Use "rounded" for half-body shot.
   bio: |
-    I am a Ph.D. student in Mechanical Engineering at The University of Texas at Austin, where I am fortunate to be advised by Professor <a href="https://www.cs.utexas.edu/~pstone/">Peter Stone</a>. My research is at the intersection of robotics and reinforcement learning, with a specific focus on the <strong>locomotion of humanoid robots</strong>. 
-    Prior to joining UT Austin, I earned my M.S. in Electronic and Information Engineering from Tsinghua University and my B.S. in Mechanical Engineering from Xi'an Jiaotong University. 
+    I am a Ph.D. student at The University of Texas at Austin, where I am fortunate to be advised by Professor <a href="https://www.cs.utexas.edu/~pstone/">Peter Stone</a>. My research is at the intersection of robotics and reinforcement learning, with a specific focus on <strong>humanoid robots</strong>. 
+    Prior to joining UT Austin, I earned my M.S. from Tsinghua University and my B.S. from Xi'an Jiaotong University. 
     Beyond research, I am a passionate <a href="/photography/">photographer</a> and an avid soccer player, I also play guitar, basketball and computer games in my spare time.
   email: "haofu@utexas.edu"
   google_scholar: ""       # Full URL to your Google Scholar profile
@@ -25,6 +26,17 @@ academic:
   cv: ""                   # Path to your CV PDF, e.g. "assets/files/cv.pdf"
   address: "Austin TX"              # e.g., "Room XXX, Building, University, City"
   enable_dark_mode: true   # Enable dark mode support
+
+  # Logo badges under the photo: `logo` is a square image, `short` the label
+  # under it (defaults to `name`), `name` the full name shown on hover.
+  groups:
+    - name: "Texas Robotics"
+      url: "https://robotics.utexas.edu/"
+      logo: "assets/img/logos/texas-robotics.png"
+    - name: "Learning Agents Research Group"
+      short: "LARG"
+      url: "https://larg.cs.utexas.edu/"
+      logo: "assets/img/logos/larg.png"
 
   research_interests:
     - "Robot Learning"
@@ -37,68 +49,32 @@ academic:
     - date: "2024-08"
       text: 'Arrived in Austin to begin my PhD life!'
 
-  # education:
-  #   - degree: "Ph.D. in Mechanical Engineering"
-  #     school: "University of Texas at Austin"
-  #     period: "2024 – Present"
-  #     description: ""
-  #   - degree: "M.S. in Electrical Engineering"
-  #     school: "Tsinghua University"
-  #     period: "2021 – 2024"
-  #     description: ""
-  #   - degree: "B.S. in Electrical Engineering"
-  #     school: "Xi'an Jiaotong University"
-  #     period: "2017 – 2021"
-  #     description: ""
-
-  # experience:
-  #   - title: "Research Assistant"
-  #     organization: "Lab / University"
-  #     period: "20XX – Present"
-  #     description: ""
-  #   # Add more items as needed
-
   publications:
-    - title: "STAMP: Scalable Humanoid Task Adaptation via Steering Diffusion Motion Prior"
-      authors: "<strong>Hao Fu</strong> et al."
-      venue: "Robotics: Science and Systems (RSS), under review"
-      year: 2026
-      pdf: ""
-      code: ""
-      arxiv: ""
-      project: ""
-      image: ""
+    - title: "FMP-STEER: Steering Flow-Based Motion Priors for Real-World Humanoid Reinforcement Learning"
+      venue: "Under review"
+      image: "assets/img/papers/fmp-steer.jpg"
+      project: "https://roboticspage.github.io/FMP-STEER/"
+
+    - title: "Let the Robot Play Your Hand: Learning Executable Trajectories for Piano Playing with a Human-Compatible Arm-Hand Exoskeleton"
+      venue: "Under review"
+      image: "assets/img/papers/piano-exoskeleton.jpg"
 
     - title: "Learning Agile Striker Skills for Humanoid Soccer Robots from Noisy Sensory Input"
       authors: "Zifan Xu, Myoungkyu Seo, Dongmyeong Lee, <strong>Hao Fu</strong>, Jiaheng Hu, Jiaxun Cui, Yuqian Jiang, Zhihan Wang, Anastasiia Brund, Joydeep Biswas, Peter Stone"
       venue: "IEEE International Conference on Robotics and Automation (ICRA)"
       year: 2026
       pdf: "https://arxiv.org/pdf/2512.06571"
-      code: ""
       arxiv: "https://arxiv.org/abs/2512.06571"
-      project: ""
-      image: ""
+      project: "https://humanoidsoccer.github.io/"
+      image: "assets/img/papers/humanoid-soccer-striker.jpg"
 
   competitions:
-    - title: "RoboCup"
-      role: "Humanoid Soccer"
-      description: "Participated in RoboCup-related humanoid soccer research and competition activities."
-      image: ""
-    - title: "Formula Student"
-      role: "Student Racing Team"
-      description: "Participated in Formula Student projects involving vehicle design, engineering, and team collaboration."
-      image: ""
-      
+    - title: "RoboCup 2026 · Incheon, Korea"
+      role: "UT Austin Villa · Humanoid Soccer League, Large Robot Division"
+      description: "Team member of UT Austin Villa, competing with the Booster T1 humanoid robot. The team reached the semi-finals and finished 4th of 22 teams in the Large Robot Division."
+      website: "https://www.cs.utexas.edu/~AustinVilla/humanoid/"
 
 
-# Photography page (/photography/). Photos are listed in _data/photos.yml.
-photography:
-  title: How Photograph
-  description: |
-    My name is Hao, it sounds like "how" &mdash; and I'm constantly exploring how to improve my photography skills,
-    which is why I named this gallery <em>How Photograph</em>.
-    If you have any questions or comments, feel free to <a href="mailto:haofu9003@gmail.com">email me</a>.
-    Commercial use is prohibited without permission.
 
 # Build settings
 markdown: kramdown

@@ -1,6 +1,9 @@
 <footer class="footer">
   <div class="container">
     <p>&copy; {{ 'now' | date: "%Y" }} {{ site.academic.name | default: site.author }}. All rights reserved.</p>
+    {%- if page.layout == 'photography' %}
+    <p class="footer-note">All photos are taken by {{ site.academic.name | default: site.author }}. Commercial use is prohibited without permission.</p>
+    {%- endif %}
   </div>
 </footer>
 <script src="{{ 'assets/js/site.js' | relative_url }}"></script>
