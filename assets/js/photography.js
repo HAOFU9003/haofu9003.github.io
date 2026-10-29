@@ -5,6 +5,62 @@
   const box = document.querySelector('.lightbox');
   if (!tiles.length) return;
 
+  // Justified rows: add photos to a row until its height (when spanning the
+  // full width) drops below the target (--row), keeping whichever of "with" or
+  // "without" the last photo lands closer to the target. Unlike plain
+  // flex-wrap, a photo left alone on a row is not blown up to full width.
+  const gallery = document.querySelector('.gallery');
+  const ratios = tiles.map(function(t) { return parseFloat(t.style.getPropertyValue('--r')) || 1.5; });
+
+  function targetHeight() {
+    const probe = document.createElement('div');
+    probe.style.cssText = 'position:absolute;visibility:hidden;height:var(--row)';
+    gallery.appendChild(probe);
+    const h = probe.getBoundingClientRect().height;
+    probe.remove();
+    return h;
+  }
+
+  function layout() {
+    const width = gallery.clientWidth;
+    const target = targetHeight();
+    let row = [];
+    let sum = 0;
+    function place(height, fill) {
+      row.forEach(function(i, k) {
+        const last = fill && k === row.length - 1; // absorbs sub-pixel rounding
+        tiles[i].style.flex = (last ? '1 1 ' : '0 0 ') + (ratios[i] * height) + 'px';
+      });
+      row = [];
+      sum = 0;
+    }
+    tiles.forEach(function(t, i) {
+      const withIt = width / (sum + ratios[i]);
+      if (withIt <= target) {
+        if (row.length && width / sum - target < target - withIt) {
+          place(width / sum, true); // the row was closer to the target without this photo
+          if (width / ratios[i] <= target) { row.push(i); sum = ratios[i]; place(width / sum, true); return; }
+        } else {
+          row.push(i);
+          sum += ratios[i];
+          place(width / sum, true);
+          return;
+        }
+      }
+      row.push(i);
+      sum += ratios[i];
+    });
+    if (row.length) place(target, false); // last, partly filled row keeps the target height
+  }
+
+  let pending = false;
+  new ResizeObserver(function() {
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(function() { pending = false; layout(); });
+  }).observe(gallery);
+  layout();
+
   // Hide the nav while scrolling down; bring it back on any upward scroll.
   const nav = document.querySelector('.nav');
   let lastY = window.scrollY;

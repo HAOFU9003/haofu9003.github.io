@@ -805,6 +805,53 @@ body.is-loaded .groups {
   .container {
     padding: 0 16px;
   }
+
+  .section {
+    padding: 44px 0;
+  }
+
+  .hero {
+    padding-top: 84px;
+  }
+
+  .hero-grid {
+    gap: 18px;
+  }
+
+  /* Long centred paragraphs are hard to read on a phone. */
+  .hero-bio {
+    text-align: left;
+  }
+
+  .hero-interests {
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .interest-tag {
+    padding: 5px 12px;
+    font-size: 0.82rem;
+  }
+
+  /* Publications as a compact list: small figure beside the text. */
+  .pub-card {
+    flex-direction: row;
+    gap: 14px;
+    padding: 18px 0;
+  }
+
+  .pub-image {
+    width: 112px;
+    max-width: none;
+  }
+
+  .pub-image img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .pub-title {
+    font-size: 0.95rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

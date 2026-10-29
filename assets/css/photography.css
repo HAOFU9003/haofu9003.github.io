@@ -263,12 +263,15 @@ html.lightbox-open {
 }
 
 /* --- Responsive --- */
+/* Row height follows the screen width on tablets and phones, so two
+   landscape shots (or three portraits) share a row instead of one per screen. */
 @media (max-width: 980px) {
-  .gallery { --row: max(180px, 28vh); }
+  .gallery { --row: 22vw; }
 }
 
-@media (max-width: 480px) {
-  .gallery { --row: 30vh; }
+@media (max-width: 600px) {
+  .gallery { --row: 38vw; }
+  .tile-info { display: none; } /* too small for text; the viewer shows it */
 }
 
 @media (max-width: 768px) {
